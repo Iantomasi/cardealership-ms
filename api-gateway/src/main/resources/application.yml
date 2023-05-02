@@ -1,0 +1,43 @@
+# Default Spring Profile
+server:
+  error:
+    include-message: always
+
+logging:
+  level:
+    root: INFO
+    com.cardealership: DEBUG
+
+app:
+  inventory-service:
+    host: localhost
+    port: 7001
+  clients-service:
+    host: localhost
+    port: 7002
+  employees-service:
+    host: localhost
+    port: 7003
+
+# mandatory
+---
+
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+# for docker
+server:
+  port: 8080
+
+app:
+  inventory-service:
+    host: inventory-service
+    port: 8080
+  clients-service:
+    host: clients-service
+    port: 8080
+  employees-service:
+    host: employees-service
+    port: 8080

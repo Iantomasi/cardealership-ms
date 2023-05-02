@@ -1,0 +1,59 @@
+# Default Spring Profile
+server:
+  error:
+    include-message: always
+
+logging:
+  level:
+    root: INFO
+    com.cardealership: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+
+spring:
+  data:
+    mongodb:
+      username: user
+      password: pwd
+      host: localhost
+      port: 27017
+      database: purchases-db
+      authentication-database: admin
+      auto-index-creation: true
+
+de:
+  flapdoodle:
+    mongodb:
+      embedded:
+        version: 5.0.5
+
+app:
+  inventory-service:
+    host: localhost
+    port: 7001
+  clients-service:
+    host: localhost
+    port: 7002
+  employees-service:
+    host: localhost
+    port: 7003
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+spring.data.mongodb.host: mongodb
+
+app:
+  inventory-service:
+    host: inventory-service
+    port: 8080
+  clients-service:
+    host: clients-service
+    port: 8080
+  employees-service:
+    host: employees-service
+    port: 8080
+
+
+server.port: 8080
